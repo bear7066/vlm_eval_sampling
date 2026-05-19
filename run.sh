@@ -35,7 +35,7 @@ Environment overrides:
   HF_TOKEN               optional, useful for gated/private models
   HF_DEVICE_MAP          default: auto
   HF_TORCH_DTYPE         default: auto
-  PYTHON                 optional, defaults to .venv/bin/python when available
+  PYTHON                 optional override; defaults to uv run
   DRY_RUN                set to 1 to print command only
 EOF
 }
@@ -84,16 +84,22 @@ if [[ "$OUTPUT" != /* ]]; then
 fi
 
 if [[ -n "${PYTHON:-}" ]]; then
-  PYTHON_BIN="$PYTHON"
-elif [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
-  PYTHON_BIN="$ROOT_DIR/.venv/bin/python"
+  CMD=(
+    "$PYTHON"
+    "$ROOT_DIR/hf_eval_sampling.py"
+  )
 else
-  PYTHON_BIN="python3"
+  CMD=(
+    uv
+    run
+    --with-requirements
+    "$ROOT_DIR/requirements.txt"
+    python
+    "$ROOT_DIR/hf_eval_sampling.py"
+  )
 fi
 
-CMD=(
-  "$PYTHON_BIN"
-  "$ROOT_DIR/hf_eval_sampling.py"
+CMD+=(
   "$VIDEO"
   "--output"
   "$OUTPUT"
