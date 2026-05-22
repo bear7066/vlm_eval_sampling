@@ -1,0 +1,16 @@
+[project]
+name = "vlm-eval-sampling"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "accelerate>=0.30",
+    "huggingface-hub>=0.23.0",
+    "opencv-python>=4.13.0.92",
+    "peft>=0.19.1",
+    "pillow>=12.2.0",
+    "safetensors>=0.4.3",
+    "torch>=2.3.0",
+    "transformers>=4.53.0",
+]
