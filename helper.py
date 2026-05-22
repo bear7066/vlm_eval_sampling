@@ -139,7 +139,7 @@ def make_log_record(
         #     "duration_seconds": args.duration_seconds,
         #     "max_frames": args.max_frames,
         # },
-        "sampling": interval_seconds,
+        "process_every_frames": interval_seconds,
         "video": video_info,
         "model": args.model,
         "base_model": args.base_model,
