@@ -32,5 +32,3 @@ uv run main.py
 | `--start-seconds` | X | `0.0` |
 | `--duration-seconds` | 取樣持續的總秒數。 | 全部 |
 | `--trust-remote-code` | 是否信任遠端程式碼（載入特定模型時需要）。 | `false` |
-
-3. 
